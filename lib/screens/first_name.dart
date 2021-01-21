@@ -38,7 +38,7 @@ class _FirstNameScreenState extends State<FirstNameScreen> {
                 autocorrect: true,
                 decoration: InputDecoration(
                   focusColor: Colors.pink[200],
-                    border: OutlineInputBorder(), labelText: 'Firstname'),
+                    border: OutlineInputBorder(), labelText: 'First Name'),
               ),
             ),
           ),

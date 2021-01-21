@@ -1,5 +1,4 @@
 import 'package:firebase_demo/screens/login.dart';
-import 'package:firebase_demo/widgets/appbar.dart';
 import 'package:flutter/material.dart';
 
 import '../storage/database.dart';
@@ -11,61 +10,53 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PensionrAppBar("Welcome to Pensionr!"),
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-              fit: BoxFit.cover,
-                colorFilter: ColorFilter.linearToSrgbGamma(),
-                image: NetworkImage(
-                    "https://i.pinimg.com/originals/b0/2d/f8/b02df84d857694d12b99838601f9805e.jpg"))),
+                fit: BoxFit.cover, image: AssetImage("assets/img/splash.png"))),
         child: Center(
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Center(
-                    child: Text(
-                  "Are you ready to fall in love?",
-                  style: TextStyle(fontSize: 24, color: Colors.black),
-                  textAlign: TextAlign.center,
-                )),
-              ),
               Spacer(
                 flex: 98,
               ),
-              // Login Button
-              Padding(
-                padding: const EdgeInsets.all(20),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.9,
                 child: new RaisedButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()));
-                  },
                   textColor: Colors.black,
-                  color: Color(0xAAFF66F5).withOpacity(0.50),
-                  padding: const EdgeInsets.only(top: 16.0, bottom: 16.0, left: 32, right: 32),
-                  child: Text('Login', style: TextStyle(fontSize: 40)),
-                ),
-              ),
-              // Register Button
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: RaisedButton(
-                  textColor: Colors.black,
-                  color: Color(0xAAFF66F5).withOpacity(0.50),
+                  color: Colors.white,
                   padding: const EdgeInsets.only(
-                      top: 16.0, bottom: 16.0, left: 32, right: 32),
-                  child: Text('Register', style: TextStyle(fontSize: 40)),
+                      top: 10.0, bottom: 10.0, left: 16, right: 16),
+                  child: Text('Sign up for free', style: TextStyle(fontWeight: FontWeight.bold)),
                   onPressed: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>
-                                FirstNameScreen()));
+                            builder: (context) => FirstNameScreen()));
                   },
                 ),
               ),
+              // Login Button
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  child: new TextButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => LoginScreen()));
+                    },
+                    // textColor: Colors.pink[200],
+                    // color: Colors.white,
+                    // padding: const EdgeInsets.only(top: 16.0, bottom: 16.0, left: 150, right: 150),
+                    child: Text(
+                      'Already have an account?',
+                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+              ),
+              // Register Button
             ],
           ),
         ),

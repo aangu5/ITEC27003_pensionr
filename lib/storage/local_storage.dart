@@ -1,3 +1,5 @@
+import 'package:firebase_demo/generators/profile.dart';
+import 'package:firebase_demo/objects/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalStorage {
@@ -5,8 +7,11 @@ class LocalStorage {
   String userID;
   bool loggedIn = false;
 
+  List<User> users;
+
   void init() async {
     _preferences = await SharedPreferences.getInstance();
+    users = await getUsers();
     print("preferences ready");
   }
 

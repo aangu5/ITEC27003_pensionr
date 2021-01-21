@@ -43,6 +43,15 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
 
+  assets:
+    - content/bios.txt
+    - content/sports.txt
+    - content/names.txt
+    - content/cities.txt
+    - content/images.txt
+    - assets/img/splash.png
+    - assets/img/Pensionr.svg
+
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
