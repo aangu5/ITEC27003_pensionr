@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
     database.getUserByID(storage.userID);
     return MaterialApp(
       title: title,
+      color: Colors.pink,
       //home: storage.loggedIn ? Home(storage.userID) : WelcomeScreen(),
       home: WelcomeScreen(),
     );
