@@ -1,5 +1,6 @@
 import 'package:firebase_demo/screens/login.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../storage/database.dart';
 import 'first_name.dart';
@@ -19,6 +20,14 @@ class WelcomeScreen extends StatelessWidget {
             children: [
               Spacer(
                 flex: 98,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(child: SvgPicture.asset("assets/img/Pensionr.svg")),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 8, bottom: 20),
+                child: Center(child: Text("Ready to find love?", style: TextStyle(fontStyle: FontStyle.italic, fontSize: 20, color: Colors.white),)),
               ),
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.9,

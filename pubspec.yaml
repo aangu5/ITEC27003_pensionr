@@ -26,6 +26,8 @@ dependencies:
   cloud_firestore: 0.13.0+1
   dash_chat: ^1.1.15
   flutter_tindercard: ^0.2.0
+  flutter_svg:
+
 
 
   # The following adds the Cupertino Icons font to your application.
