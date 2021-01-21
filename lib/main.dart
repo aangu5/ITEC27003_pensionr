@@ -2,6 +2,7 @@ import 'package:firebase_demo/screens/chat_lists.dart';
 import 'package:firebase_demo/screens/home.dart';
 import 'package:firebase_demo/screens/swipe.dart';
 import 'package:firebase_demo/screens/welcome.dart';
+import 'package:firebase_demo/storage/database.dart';
 import 'package:firebase_demo/storage/local_storage.dart';
 import 'package:flutter/material.dart';
 
@@ -10,14 +11,17 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   String title = "Pensionr";
   LocalStorage storage = LocalStorage();
+  Database database = Database();
 
   @override
   Widget build(BuildContext context) {
     storage.init();
     storage.onLoad();
+    database.getUserByID(storage.userID);
     return MaterialApp(
       title: title,
-      home: storage.loggedIn ? SwipingScreen() : WelcomeScreen(),
+      //home: storage.loggedIn ? Home(storage.userID) : WelcomeScreen(),
+      home: WelcomeScreen(),
     );
   }
 }

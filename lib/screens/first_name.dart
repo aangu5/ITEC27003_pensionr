@@ -1,7 +1,7 @@
 import 'package:firebase_demo/objects/user.dart';
+import 'package:firebase_demo/screens/date_of_birth.dart';
+import 'package:firebase_demo/widgets/appbar.dart';
 import 'package:flutter/material.dart';
-
-import 'last_name.dart';
 
 class FirstNameScreen extends StatefulWidget {
   FirstNameScreen();
@@ -22,13 +22,13 @@ class _FirstNameScreenState extends State<FirstNameScreen> {
     User user = User();
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Firstname'),
-        centerTitle: true,
-        backgroundColor: Colors.pink[200],
-      ),
+      appBar: PensionrAppBar("What should we call you?"),
       body: Column(
         children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text("What is your first name?", style: TextStyle(fontSize: 32),),
+          ),
           Center(
             child: Padding(
               padding: const EdgeInsets.all(32.0),
@@ -37,6 +37,7 @@ class _FirstNameScreenState extends State<FirstNameScreen> {
                 autofocus: true,
                 autocorrect: true,
                 decoration: InputDecoration(
+                  focusColor: Colors.pink[200],
                     border: OutlineInputBorder(), labelText: 'Firstname'),
               ),
             ),
@@ -46,12 +47,14 @@ class _FirstNameScreenState extends State<FirstNameScreen> {
             child: RaisedButton(
               child: Center(child: Text('Submit')),
               onPressed: () {
-                user.firstName = _controller.value.text;
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            LastNameScreen(user)));
+                if (_controller.value.text.isNotEmpty) {
+                  user.firstName = _controller.value.text;
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              DateOfBirthScreen(user)));
+                }
               },
             ),
           )

@@ -1,12 +1,14 @@
 import 'package:dash_chat/dash_chat.dart';
+import 'package:firebase_demo/objects/user.dart';
 import 'package:firebase_demo/objects/users.dart';
+import 'package:firebase_demo/widgets/appbar.dart';
 import 'package:flutter/material.dart';
 
 
 class ChatScreen extends StatelessWidget {
   final GlobalKey<DashChatState> _chatViewKey = GlobalKey<DashChatState>();
 
-  final ChatUser user;
+  final User user;
   final List<ChatMessage> messages;
 
   ChatScreen({Key key, @required this.user, @required this.messages})
@@ -15,15 +17,13 @@ class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(user.name),
-      ),
+      appBar: PensionrAppBar(user.firstName),
       body: DashChat(
         key: _chatViewKey,
         inverted: false,
         sendOnEnter: true,
         textInputAction: TextInputAction.send,
-        user: me,
+        user: me.toChatUser(),
         inputDecoration: InputDecoration.collapsed(hintText: "Send message"),
         dateFormat: DateFormat('yyyy-MMM-dd'),
         timeFormat: DateFormat('HH:mm'),
@@ -32,10 +32,10 @@ class ChatScreen extends StatelessWidget {
         showAvatarForEveryMessage: false,
         scrollToBottom: false,
         onPressAvatar: (ChatUser user) {
-          print("OnPressAvatar: ${user.name}");
+          print("OnPressAvatar: ${user.firstName}");
         },
         onLongPressAvatar: (ChatUser user) {
-          print("OnLongPressAvatar: ${user.name}");
+          print("OnLongPressAvatar: ${user.firstName}");
         },
         messageContainerPadding: EdgeInsets.only(left: 5.0, right: 5.0),
         alwaysShowSend: true,

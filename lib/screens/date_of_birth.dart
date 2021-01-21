@@ -1,15 +1,18 @@
 import 'dart:async';
 
+import 'package:dash_chat/dash_chat.dart';
 import 'package:firebase_demo/objects/user.dart';
 import 'package:firebase_demo/screens/chat_lists.dart';
 import 'package:firebase_demo/screens/swipe.dart';
 import 'package:firebase_demo/storage/database.dart';
+import 'package:firebase_demo/widgets/appbar.dart';
 import 'package:flutter/material.dart';
 
 import 'home.dart';
 
 class DateOfBirthScreen extends StatefulWidget {
   User user;
+
   DateOfBirthScreen(this.user);
 
   @override
@@ -17,9 +20,10 @@ class DateOfBirthScreen extends StatefulWidget {
 }
 
 class _DateOfBirthScreenState extends State<DateOfBirthScreen> {
-  DateTime selectedDate = DateTime.now();
+  DateTime selectedDate = DateTime.now().subtract(Duration(days: 18250));
   Database database = Database();
   User currentUser;
+  var format = DateFormat("dd/MM/yyyy");
 
   _DateOfBirthScreenState(this.currentUser);
 
@@ -27,8 +31,8 @@ class _DateOfBirthScreenState extends State<DateOfBirthScreen> {
     final DateTime picked = await showDatePicker(
         context: context,
         initialDate: selectedDate,
-        firstDate: DateTime(2015, 8),
-        lastDate: DateTime(2101));
+        firstDate: DateTime(1900),
+        lastDate: DateTime.now().subtract(Duration(days: 18250)));
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
@@ -38,37 +42,40 @@ class _DateOfBirthScreenState extends State<DateOfBirthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Enter Date of Birth"),
-        centerTitle: true,
-        backgroundColor: Colors.pink[200],
-      ),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Text("${selectedDate.toLocal()}".split(' ')[0]),
-            SizedBox(
-              height: 20.0,
+      appBar: PensionrAppBar("Don't be offended"),
+      body: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                "When were you born?", style: TextStyle(fontSize: 32),),
             ),
-            RaisedButton(
+          ),
+          Padding(
+            padding: const EdgeInsets.all(32.0),
+            child: RaisedButton(
               onPressed: () => _selectDate(context),
-              child: Text('Select date'),
+              child: Text(
+                format.format(selectedDate), style: TextStyle(fontSize: 32),),
             ),
-            RaisedButton(
-                child: Text("Confirm Date of Birth"),
-                onPressed: () {
-                  currentUser.dateOfBirth = selectedDate;
-                  database.saveUser(currentUser);
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              SwipingScreen()));
-                  //registeringUser.setDate(selectedDate) or equivalent
-                }),
-          ],
-        ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: RaisedButton(
+              child: Center(child: Text('Confirm date of birth')),
+              onPressed: () {
+                currentUser.dateOfBirth = selectedDate;
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => Home()),
+                      (Route<dynamic> route) => false,
+                );
+              },
+            ),
+          )
+        ],
       ),
     );
   }

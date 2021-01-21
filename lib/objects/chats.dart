@@ -4,17 +4,17 @@ import 'package:firebase_demo/objects/users.dart';
 List<ChatMessage> margaretChats = [
   ChatMessage(
     text: "I haven’t felt a man’s touch in years",
-    user: margaret,
+    user: margaret.toChatUser(),
     createdAt: DateTime.now(),
   ),
   ChatMessage(
     text: "aa",
-    user: margaret,
+    user: margaret.toChatUser(),
     createdAt: DateTime.now(),
   ),
   ChatMessage(
     text: "omg same",
-    user: me,
+    user: me.toChatUser(),
     createdAt: DateTime.now(),
   )
 ];

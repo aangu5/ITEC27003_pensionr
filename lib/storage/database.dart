@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dash_chat/dash_chat.dart';
 import 'package:firebase_demo/storage/local_storage.dart';
 
 import '../objects/user.dart';
@@ -20,10 +21,11 @@ class Database {
     List<User> output = [];
     databaseReference.collection("users").getDocuments().then((snapshot) {
       snapshot.documents.forEach((element) {
-        User user = User();
-        user.firstName = element.data["name"];
-        user.surname = element.data["surname"];
-        user.dateOfBirth = element.data["dateOfBirth"];
+        User user = User.all(
+          firstName: element.data["name"],
+          lastName: element.data["surname"],
+          dateOfBirth: element.data["dateOfBirth"],
+        );
         output.add(user);
       });
     });
