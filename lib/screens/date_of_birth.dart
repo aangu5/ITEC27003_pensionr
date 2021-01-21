@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:firebase_demo/objects/user.dart';
 import 'package:firebase_demo/screens/chat_lists.dart';
+import 'package:firebase_demo/screens/swipe.dart';
 import 'package:firebase_demo/storage/database.dart';
 import 'package:flutter/material.dart';
 
@@ -63,7 +64,7 @@ class _DateOfBirthScreenState extends State<DateOfBirthScreen> {
                       context,
                       MaterialPageRoute(
                           builder: (context) =>
-                              ChatListScreen()));
+                              SwipingScreen()));
                   //registeringUser.setDate(selectedDate) or equivalent
                 }),
           ],

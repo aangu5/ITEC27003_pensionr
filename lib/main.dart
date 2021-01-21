@@ -1,5 +1,6 @@
 import 'package:firebase_demo/screens/chat_lists.dart';
 import 'package:firebase_demo/screens/home.dart';
+import 'package:firebase_demo/screens/swipe.dart';
 import 'package:firebase_demo/screens/welcome.dart';
 import 'package:firebase_demo/storage/local_storage.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
     storage.onLoad();
     return MaterialApp(
       title: title,
-      home: storage.loggedIn ? ChatListScreen() : WelcomeScreen(),
+      home: storage.loggedIn ? SwipingScreen() : WelcomeScreen(),
     );
   }
 }
