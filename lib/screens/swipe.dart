@@ -59,6 +59,7 @@ class _SwipingScreenState extends State<SwipingScreen>
                                   Text(
                                     snapshot.data[index].firstName + ", " + snapshot.data[index].age.toString(),
                                     style: TextStyle(
+                                      fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                       fontSize: 32,
                                     ),
@@ -105,6 +106,7 @@ class _SwipingScreenState extends State<SwipingScreen>
                       if (orientation == CardSwipeOrientation.RIGHT) {
                         //Card is LEFT swiping
                         if (DateTime.now().second.toString().endsWith("5")) {
+                          LocalStorage.matches.add(snapshot.data[index]);
                           showDialog(
                               context: context,
                               builder: (BuildContext context) =>

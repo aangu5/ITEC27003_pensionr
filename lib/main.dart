@@ -17,7 +17,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     storage.init();
     storage.onLoad();
-    database.getUserByID(storage.userID);
     return MaterialApp(
       title: title,
       color: Colors.pink,

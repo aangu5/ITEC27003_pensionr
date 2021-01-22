@@ -12,17 +12,14 @@ class MatchPopUpScreen extends StatelessWidget {
     return new AlertDialog(
       content: Text("It's a match! Why not message ${user.firstName} and see how you get on?"),
       actions: [
-        RaisedButton(
-          child: Text("Message"),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        RaisedButton(
-          child: Text("Dismiss"),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: RaisedButton(
+            child: Text("Woohoo!"),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
         ),
       ],
     );

@@ -2,11 +2,10 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dash_chat/dash_chat.dart';
+import 'package:firebase_demo/objects/users.dart';
 
 class User {
-  String userID;
   String firstName;
-  String lastName;
   DateTime dateOfBirth;
   DocumentReference reference;
   String imageURL;
@@ -23,11 +22,11 @@ class User {
      age = nextInt(55, 100);
   }
 
-  User.all({this.firstName, this.lastName, this.dateOfBirth, this.imageURL, this.age, this.bio}) {
+  User.all({this.firstName, this.dateOfBirth, this.imageURL, this.age, this.bio}) {
     age = nextInt(55, 100);
   }
 
-  User.name({this.userID, this.dateOfBirth,
+  User.name({this.dateOfBirth,
       this.reference, this.age});
 
   Map<String, dynamic > toMap() {
@@ -36,11 +35,17 @@ class User {
 
   ChatUser toChatUser() {
     return new ChatUser(
-      uid: userID,
       firstName: firstName,
-      lastName: lastName,
       avatar: imageURL,
+      uid: "001",
     );
+  }
+
+  List<ChatMessage> getMessages() {
+    ChatMessage message = ChatMessage(text: bio, user: new ChatUser(uid: "1", avatar: imageURL));
+    List<ChatMessage> messages =[];
+    messages.add(message);
+    return messages;
   }
 
 }

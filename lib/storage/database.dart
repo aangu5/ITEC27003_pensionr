@@ -23,7 +23,6 @@ class Database {
       snapshot.documents.forEach((element) {
         User user = User.all(
           firstName: element.data["name"],
-          lastName: element.data["surname"],
           dateOfBirth: element.data["dateOfBirth"],
         );
         output.add(user);
@@ -32,12 +31,4 @@ class Database {
     return output;
 }
 
-  Future<User> getUserByID(String userID) async {
-    for (User user in await getAllUsers()) {
-      if (user.userID == userID) {
-        return user;
-      }
-    }
-    return null;
-  }
 }

@@ -8,6 +8,7 @@ class LocalStorage {
   bool loggedIn = false;
 
   List<User> users;
+  static List<User> matches = [];
 
   void init() async {
     _preferences = await SharedPreferences.getInstance();

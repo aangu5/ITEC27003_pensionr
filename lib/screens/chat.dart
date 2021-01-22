@@ -9,10 +9,11 @@ class ChatScreen extends StatelessWidget {
   final GlobalKey<DashChatState> _chatViewKey = GlobalKey<DashChatState>();
 
   final User user;
-  final List<ChatMessage> messages;
 
-  ChatScreen({Key key, @required this.user, @required this.messages})
+  ChatScreen({Key key, @required this.user})
       : super(key: key);
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class ChatScreen extends StatelessWidget {
         inputDecoration: InputDecoration.collapsed(hintText: "Send message"),
         dateFormat: DateFormat('yyyy-MMM-dd'),
         timeFormat: DateFormat('HH:mm'),
-        messages: messages,
+        messages: user.getMessages(),
         showUserAvatar: false,
         showAvatarForEveryMessage: false,
         scrollToBottom: false,
